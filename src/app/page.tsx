@@ -1,103 +1,136 @@
-import Image from "next/image";
+import HeroSection from "@/components/HeroSection";
+import ProjectsSection from "@/components/ProjectsSection";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+	const handleSubmit = async (e: FormData) => {
+		"use server";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+		const start = Number(e.get("ts"));
+
+		if (Date.now() - start < 3000) {
+			throw new Error("Too fast");
+		}
+
+		const name = e.get("name");
+		const email = e.get("email");
+		const message = e.get("message");
+		const website = e.get("website");
+
+		if (website) {
+			return;
+		}
+
+		try {
+			const URL = process.env.DISCORD_WEBHOOK_URL as string;
+			const body = {
+				embeds: [
+					{
+						title: "New Contact Form Submission",
+						color: 0xffcc00,
+						author: {
+							name: name,
+						},
+						description: `**Email:** ${email}\n**Message:** ${message}`,
+						timestamp: new Date(),
+					},
+				],
+			};
+			const response = await fetch(URL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to send message");
+			}
+		} catch (error) {
+			if (error instanceof Error) {
+				console.error("Error sending message:", error.message);
+			}
+		}
+	};
+
+	return (
+		<main>
+			<HeroSection />
+			<ProjectsSection />
+			<section className="min-h-screen bg-neutral-800 py-20 px-6" id="contact">
+				<div className="max-w-6xl mx-auto">
+					<div className="mb-12">
+						<h2 className="text-4xl font-bold text-white inline-block relative">
+							<span className="bg-gradient-to-r from-yellow-500 to-transparent px-2">
+								Contact Me
+							</span>
+						</h2>
+						<p className="text-xl text-neutral-300 mt-3 max-w-2xl">
+							A showcase of my recent work spanning web development, UI/UX
+							design, and interactive experiences.
+						</p>
+					</div>
+				</div>
+				<form action={handleSubmit}>
+					<div className="max-w-6xl mx-auto bg-neutral-900 p-8 rounded-lg shadow-lg">
+						<div className="mb-4">
+							<label
+								htmlFor="name"
+								className="block text-sm font-medium text-neutral-300 mb-1"
+							>
+								Name
+							</label>
+							<input
+								type="text"
+								name="name"
+								id="name"
+								className="w-full p-3 bg-neutral-800 text-neutral-300 rounded-md focus:outline-none focus:ring focus:ring-yellow-500"
+								required
+								minLength={3}
+								maxLength={50}
+							/>
+						</div>
+						<div className="mb-4">
+							<label
+								htmlFor="email"
+								className="block text-sm font-medium text-neutral-300 mb-1"
+							>
+								Email
+							</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								className="w-full p-3 bg-neutral-800 text-neutral-300 rounded-md focus:outline-none focus:ring focus:ring-yellow-500"
+								required
+								minLength={5}
+								maxLength={50}
+							/>
+							<input type="text" name="website" className="hidden" />
+							<input type="hidden" name="ts" value={Date.now()} />
+						</div>
+						<div className="mb-4">
+							<label
+								htmlFor="message"
+								className="block text-sm font-medium text-neutral-300 mb-1"
+							>
+								Message
+							</label>
+							<textarea
+								id="message"
+								rows={5}
+								maxLength={3760}
+								name="message"
+								className="w-full p-3 bg-neutral-800 text-neutral-300 rounded-md focus:outline-none focus:ring focus:ring-yellow-500"
+								required
+							></textarea>
+						</div>
+						<button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out w-full">
+							Send Message
+						</button>
+					</div>
+				</form>
+			</section>
+		</main>
+	);
 }

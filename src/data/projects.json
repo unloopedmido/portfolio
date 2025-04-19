@@ -1,0 +1,51 @@
+[
+	{
+		"name": "🗡️ BladeForge",
+		"description": "A browser-based idle game where over a thousand players forge and sell procedurally generated swords with varying rarities, qualities, and materials. Features a luck-based upgrade system that evolves into machine-driven property refinement. Built using Next.js and Express with a full backend/frontend separation.",
+		"technologies": ["TypeScript", "Prisma", "tRPC", "NextAuth", "Radix UI"],
+		"github": "https://github.com/unloopedmido/bladeforge"
+	},
+	{
+		"name": "🛠️ skyblock-ts",
+		"description": "A TypeScript monorepo delivering a fully typed Hypixel SkyBlock API client and high-level toolkit. Includes @skyblock-ts/core for promise-based endpoint calls and @skyblock-ts/toolkit for cached auction pagination, profile lookups, Bazaar helpers, and more—making SkyBlock data integration trivial.",
+		"technologies": [
+			"TypeScript",
+			"Node.js",
+			"pnpm",
+			"ES Modules",
+			"Fetch API"
+		],
+		"github": "https://github.com/unloopedmido/skyblockts"
+	},
+	{
+		"name": "🧰 Lootils",
+		"description": "A sleek productivity suite designed to simplify daily life. Includes a Notes app, To-Do list, Reminders, and a Calendar—all in one minimalist interface. Built with performance and usability in mind, it's perfect for keeping track of tasks without distractions.",
+		"technologies": [
+			"Next.js",
+			"NextAuth",
+			"tRPC",
+			"Prisma",
+			"TailwindCSS",
+			"DaisyUI"
+		],
+		"github": "https://github.com/cored-inc/lootils"
+	},
+	{
+		"name": "🏷️ HyIntel",
+		"description": "A lightweight web app for viewing and analyzing Hypixel Skyblock auctions. Parses Minecraft color codes into styled HTML, displays detailed item lore, and supports dynamic modals for item previews. Built with FastAPI and raw HTML+Tailwind for a clean, fast UI. No JS frameworks used.",
+		"technologies": ["Python", "FastAPI", "Jinja2", "TailwindCSS"],
+		"github": "https://github.com/unloopedmido/hyintel"
+	},
+	{
+		"name": "🧪 HyTools",
+		"description": "A collection of specialized tools for Hypixel SkyBlock players. Features include auction price lookup, gear optimizers, and metadata inspection to make trading and grinding more efficient. Lightweight and fast, designed to work seamlessly alongside your game.",
+		"technologies": ["Express", "Vite", "Vue", "TailwindCSS"],
+		"github": "https://github.com/unloopedmido/hytools"
+	},
+	{
+		"name": "⌨️ Taplytics",
+		"description": "A simple, elegant, and modern typing test application. Features a clean UI with a stats dashboard, two modes for testing (words and quotes) and saves your stats locally. Very lightweight and fast, built with a focus on performance.",
+		"technologies": ["Next.js", "TailwindCSS", "Chart.js"],
+		"github": "https://github.com/unloopedmido/taplytics"
+	}
+]
