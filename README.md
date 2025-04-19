@@ -9,16 +9,16 @@ It showcases my projects, skills, and includes a contact form.
 
 ## Tech Stack
 
-- Next.js 15.3.0 (App Router)  
+- Next.js 15.3.0 (App Router)
 - React & TypeScript
-- TailwindCSS  
+- TailwindCSS
 
 ## Features
 
-- Hero section with code‑style intro  
-- Projects gallery (dynamically loaded from `data.json`)  
-- Contact form (server action → Discord webhook)  
-- Minimal spam protection via honeypot & rate‑limit  
+- Hero section with code‑style intro
+- Projects gallery (dynamically loaded from `data.json`)
+- Contact form (server action → Discord webhook)
+- Minimal spam protection via honeypot & rate‑limit
 
 ## Getting Started
 

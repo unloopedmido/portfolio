@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 .animate-caret-blink {
-	animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-	from,
-	to {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0;
-	}
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .terminal-text p {
-	margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
