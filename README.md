@@ -17,8 +17,7 @@ It showcases my projects, skills, and includes a contact form.
 
 - Hero section with code‑style intro
 - Projects gallery (dynamically loaded from `data.json`)
-- Contact form (server action → Discord webhook)
-- Minimal spam protection via honeypot & rate‑limit
+- Contact form
 
 ## Getting Started
 
@@ -31,19 +30,9 @@ pnpm dev
 
 Open <http://localhost:3000> in your browser.
 
-## Environment Variables
-
-Create a `.env.local`:
-
-```env
-DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/…
-```
-
 ## Build & Deploy
 
 ```bash
 pnpm build
 pnpm start
 ```
-
-_Vercel will pick this up automatically if you link the repo._
