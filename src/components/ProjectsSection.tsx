@@ -1,4 +1,5 @@
 import Projects from "@/data/projects.json";
+import Image from "next/image";
 
 export default function ProjectsSection() {
   return (
@@ -27,10 +28,17 @@ export default function ProjectsSection() {
             >
               <div className="relative overflow-hidden h-48">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                {/* <img
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   src={`/${project.name.split(" ")[1].toLowerCase()}.png`}
                   alt={project.name}
+                /> */}
+                <Image
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={`/${project.name.split(" ")[1].toLowerCase()}.png`}
+                  alt={project.name}
+                  fill
+                  sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent opacity-70" />
               </div>
