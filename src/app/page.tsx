@@ -18,13 +18,6 @@ export default function Home() {
       hoverColor: "hover:bg-blue-500",
     },
     {
-      platform: "Discord",
-      handle: "@nonlooped",
-      icon: FaDiscord,
-      color: "from-indigo-400 to-indigo-600",
-      hoverColor: "hover:bg-indigo-500",
-    },
-    {
       platform: "Email",
       handle: "cored.developments@gmail.com",
       url: "mailto:cored.developments@gmail.com",
@@ -53,42 +46,59 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {contactInfo.map((contact, index) => {
-              const IconComponent = contact.icon;
-              return (
-                <a
-                  key={index}
-                  href={contact.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 ${contact.hoverColor} hover:border-transparent transition-all duration-300 transform hover:scale-105`}
-                >
-                  <div className="flex flex-col items-center text-center space-y-4">
-                    <div
-                      className={`p-4 rounded-full bg-gradient-to-r ${contact.color} group-hover:shadow-lg transition-shadow duration-300`}
-                    >
-                      <IconComponent className="text-2xl text-white" />
-                    </div>
-
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors duration-300">
-                        {contact.platform}
-                      </h3>
-                      <p className="text-neutral-300 group-hover:text-neutral-100 transition-colors duration-300 break-all">
-                        {contact.handle}
-                      </p>
-                    </div>
-
-                    {contact.url && (
-                      <div className="flex items-center text-sm text-neutral-400 group-hover:text-neutral-200 transition-colors duration-300">
-                        <span className="mr-2">Connect</span>
-                        <FaExternalLinkAlt className="text-xs" />
-                      </div>
-                    )}
+            {contactInfo.map((contact, index) => (
+              <a
+                key={index}
+                href={contact.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 ${contact.hoverColor} hover:border-transparent transition-all duration-300 transform hover:scale-105`}
+              >
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div
+                    className={`p-4 rounded-full bg-gradient-to-r ${contact.color} group-hover:shadow-lg transition-shadow duration-300`}
+                  >
+                    <contact.icon className="text-2xl text-white" />
                   </div>
-                </a>
-              );
-            })}
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors duration-300">
+                      {contact.platform}
+                    </h3>
+                    <p className="text-neutral-300 group-hover:text-neutral-100 transition-colors duration-300 break-all">
+                      {contact.handle}
+                    </p>
+                  </div>
+
+                  {contact.url && (
+                    <div className="flex items-center text-sm text-neutral-400 group-hover:text-neutral-200 transition-colors duration-300">
+                      <span className="mr-2">Connect</span>
+                      <FaExternalLinkAlt className="text-xs" />
+                    </div>
+                  )}
+                </div>
+              </a>
+            ))}
+            <div
+              className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 from-indigo-400 to-indigo-600 hover:border-transparent transition-all duration-300 transform hover:scale-105`}
+            >
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div
+                  className={`p-4 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 group-hover:shadow-lg transition-shadow duration-300`}
+                >
+                  <FaDiscord className="text-2xl text-white" />
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors duration-300">
+                    Discord
+                  </h3>
+                  <p className="text-neutral-300 group-hover:text-neutral-100 transition-colors duration-300 break-all">
+                    @nonlooped
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Additional CTA section */}
