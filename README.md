@@ -28,7 +28,7 @@ pnpm install
 pnpm dev
 ```
 
-Open <https://thelooped.tech> in your browser.
+Open <http://localhost:3000> in your browser.
 
 ## Build & Deploy
 
