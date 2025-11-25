@@ -4,7 +4,7 @@ export default function HomeSection() {
   return (
     <>
       <section
-        id="about"
+        id="home"
         className="pt-20 bg-neutral-800 text-white min-h-screen p-6 flex items-center justify-center"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 max-w-6xl place-items-center">
@@ -52,16 +52,16 @@ export default function HomeSection() {
                   Administrator: Command Prompt
                 </h2>
               </div>
-              <div className="flex gap-x-4 items-center">
-                <button className="inline-block text-xl hover:text-gray-300">
+              <div className="flex gap-x-4 items-center" aria-hidden="true">
+                <span className="inline-block text-xl hover:text-gray-300">
                   −
-                </button>
-                <button className="inline-block text-xl hover:text-gray-300">
+                </span>
+                <span className="inline-block text-xl hover:text-gray-300">
                   □
-                </button>
-                <button className="inline-block text-xl hover:text-gray-300">
+                </span>
+                <span className="inline-block text-xl hover:text-gray-300">
                   ×
-                </button>
+                </span>
               </div>
             </div>
             <div className="w-full bg-neutral-900 p-4 rounded-b-md font-mono text-sm">

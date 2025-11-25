@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
 import {
   FaTwitter,
   FaDiscord,
@@ -30,6 +31,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <SkillsSection />
       <ProjectsSection />
       <section className="min-h-screen bg-neutral-800 py-20 px-6" id="contact">
         <div className="max-w-6xl mx-auto">
@@ -40,8 +42,9 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl text-neutral-300 mt-3 max-w-2xl">
-              Ready to collaborate? Reach out through any of these platforms and
-              let&apos;s create something amazing together.
+              I&apos;m not actively job hunting, but I&apos;m open to interesting offers
+              and collaborations — especially remote roles or hybrid roles within
+              the Middle East. Reach out through any of these platforms.
             </p>
           </div>
 
@@ -52,6 +55,7 @@ export default function Home() {
                 href={contact.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Contact via ${contact.platform}`}
                 className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 ${contact.hoverColor} hover:border-transparent transition-all duration-300 transform hover:scale-105`}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
@@ -111,9 +115,8 @@ export default function Home() {
                 </span>
               </h3>
               <p className="text-neutral-300 mb-6">
-                Whether you have a project in mind or just want to chat about
-                tech, I&apos;m always excited to connect with fellow creators
-                and innovators.
+                Whether you&apos;re exploring a role, a collaboration, or just want
+                to chat about building tools and games, I&apos;m happy to connect.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
@@ -121,12 +124,14 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-md transition duration-200 ease-in-out"
+                  aria-label="Open Twitter profile @nonlooped"
                 >
                   Follow on Twitter
                 </a>
                 <a
                   href="mailto:cored.developments@gmail.com"
                   className="border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-neutral-900 font-semibold py-2 px-6 rounded-md transition duration-200 ease-in-out"
+                  aria-label="Send me an email"
                 >
                   Send Email
                 </a>

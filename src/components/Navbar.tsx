@@ -53,7 +53,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <a
-          href="#"
+          href="#home"
           className="group flex items-center gap-2"
           onClick={() => setActiveSection("home")}
         >
@@ -68,7 +68,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-white font-medium">
-          {["about", "projects", "contact"].map((item) => (
+          {["home", "projects", "contact"].map((item) => (
             <li key={item}>
               <a
                 href={`#${item}`}
@@ -129,14 +129,14 @@ export default function Navbar() {
           >
             <div className="px-6 py-4">
               <ul className="flex flex-col gap-4 text-white">
-                {["about", "projects", "contact"].map((item) => (
+                {["home", "projects", "contact"].map((item) => (
                   <motion.li
                     key={item}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{
                       delay:
-                        0.1 * ["about", "projects", "contact"].indexOf(item),
+                        0.1 * ["home", "projects", "contact"].indexOf(item),
                     }}
                   >
                     <a
