@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import SkillsSection from "@/components/SkillsSection";
 import {
   FaTwitter,
   FaDiscord,
@@ -39,7 +38,6 @@ export default function Home() {
   return (
     <main className="relative">
       <HeroSection />
-      <SkillsSection />
       <ProjectsSection />
       <section
         className="min-h-[80vh] py-24 md:py-32 px-6 flex flex-col justify-center items-center"
