@@ -13,8 +13,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://thelooped.tech";
+
 export const metadata: Metadata = {
-  title: "Looped | Full-Stack Developer & Creative Artist",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Looped | Full-Stack Developer & Creative Artist",
+    template: "%s | Looped",
+  },
   description:
     "Looped is a full-stack developer and digital artist passionate about building seamless user experiences, interactive web apps, and creative interfaces.",
   keywords: [
@@ -29,28 +35,30 @@ export const metadata: Metadata = {
     "TailwindCSS",
     "Open Source",
   ],
-  authors: [{ name: "Looped", url: "https://thelooped.tech" }],
+  authors: [{ name: "Looped", url: siteUrl }],
   creator: "Looped",
   publisher: "Looped",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
   openGraph: {
     title: "Looped | Full-Stack Developer & Creative Artist",
     description:
       "Portfolio of Looped - a full-stack developer and digital artist building creative interfaces and seamless user experiences.",
-    url: "https://thelooped.tech",
+    url: siteUrl,
     siteName: "Looped Portfolio",
     images: [
-      {
-        url: "https://thelooped.tech/logo.png",
-        width: 500,
-        height: 500,
-        alt: "Looped Logo",
-      },
-      {
-        url: "https://thelooped.tech/full.png",
-        width: 1200,
-        height: 630,
-        alt: "Looped Full Preview",
-      },
+      { url: "/logo.png", width: 500, height: 500, alt: "Looped Logo" },
+      { url: "/full.png", width: 1200, height: 630, alt: "Looped Full Preview" },
     ],
     locale: "en_US",
     type: "website",
@@ -59,28 +67,68 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Looped | Full-Stack Developer & Creative Artist",
     description:
-      "Portfolio of Looped — full-stack developer and digital artist building seamless user experiences.",
+      "My Portfolio - Looped - full-stack developer and digital artist building seamless user experiences.",
     creator: "@nonlooped",
     images: ["https://thelooped.tech/full.png"],
   },
   alternates: {
-    canonical: "https://thelooped.tech",
+    canonical: siteUrl,
   },
   category: "technology",
 };
+
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Looped Portfolio",
+        description: "Full-stack developer and creative artist portfolio.",
+        publisher: { "@id": `${siteUrl}/#person` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Looped",
+        url: siteUrl,
+        jobTitle: "Full-Stack Developer",
+        description: "Full-stack developer and digital artist building creative interfaces and seamless user experiences.",
+        sameAs: [
+          "https://twitter.com/nonlooped",
+          "https://github.com/unloopedmido",
+          "https://x.com/nonlooped",
+        ],
+      },
+    ],
+  };
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
