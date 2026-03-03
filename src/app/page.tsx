@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import {
@@ -7,6 +8,12 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 
+export const metadata: Metadata = {
+  title: "Looped | Full-Stack Developer & Creative Artist",
+  description:
+    "Looped is a full-stack developer and digital artist passionate about building seamless user experiences, interactive web apps, and creative interfaces. View portfolio and projects.",
+};
+
 export default function Home() {
   const contactInfo = [
     {
@@ -14,121 +21,113 @@ export default function Home() {
       handle: "@nonlooped",
       url: "https://twitter.com/nonlooped",
       icon: FaTwitter,
-      color: "from-blue-400 to-blue-600",
-      hoverColor: "hover:bg-blue-500",
     },
     {
       platform: "Email",
       handle: "cored.developments@gmail.com",
       url: "mailto:cored.developments@gmail.com",
       icon: FaEnvelope,
-      color: "from-red-400 to-red-600",
-      hoverColor: "hover:bg-red-500",
+    },
+    {
+      platform: "Discord",
+      handle: "@nonlooped",
+      icon: FaDiscord,
     },
   ];
 
   return (
-    <main>
+    <main className="relative">
       <HeroSection />
       <ProjectsSection />
-      <section className="min-h-screen bg-neutral-800 py-20 px-6" id="contact">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold text-white inline-block relative">
-              <span className="bg-gradient-to-r from-yellow-500 to-transparent px-2">
-                Contact Me
+      <section
+        className="min-h-[80vh] py-24 md:py-32 px-6 flex flex-col justify-center items-center"
+        id="contact"
+        aria-labelledby="contact-heading"
+      >
+        <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
+          <div className="mb-16 md:mb-24 text-center flex flex-col items-center">
+            <h2 id="contact-heading" className="text-5xl md:text-7xl lg:text-8xl font-black text-foreground tracking-tighter uppercase mb-6">
+              Let&apos;s{" "}
+              <span
+                className="text-transparent italic font-serif"
+                style={{
+                  WebkitTextStrokeWidth: "2px",
+                  WebkitTextStrokeColor: "var(--foreground)",
+                }}
+              >
+                Connect
               </span>
             </h2>
-            <p className="text-xl text-neutral-300 mt-3 max-w-2xl">
-              Ready to collaborate? Reach out through any of these platforms and
-              let&apos;s create something amazing together.
+            <div className="w-24 h-1 bg-foreground/20 rounded-full mb-8"></div>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl font-mono text-center">
+              Ready to collaborate? Reach out through any of these platforms.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {contactInfo.map((contact, index) => (
-              <a
-                key={index}
-                href={contact.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 ${contact.hoverColor} hover:border-transparent transition-all duration-300 transform hover:scale-105`}
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div
-                    className={`p-4 rounded-full bg-gradient-to-r ${contact.color} group-hover:shadow-lg transition-shadow duration-300`}
-                  >
-                    <contact.icon className="text-2xl text-white" />
+          <div className="flex flex-wrap justify-center gap-6 w-full max-w-5xl">
+            {contactInfo.map((contact, index) => {
+              const Content = (
+                <div className="flex flex-col items-center text-center justify-center w-full h-full bg-card-bg/50 backdrop-blur-sm border border-card-border p-10 rounded-[2.5rem] shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:bg-card-bg group">
+                  <div className="w-16 h-16 bg-foreground text-background rounded-full flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                    <contact.icon className="text-2xl" />
                   </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors duration-300">
-                      {contact.platform}
-                    </h3>
-                    <p className="text-neutral-300 group-hover:text-neutral-100 transition-colors duration-300 break-all">
-                      {contact.handle}
-                    </p>
-                  </div>
-
+                  <h3 className="text-2xl font-bold text-foreground mb-2">
+                    {contact.platform}
+                  </h3>
+                  <p className="text-muted-foreground font-mono text-sm mb-6 break-all">
+                    {contact.handle}
+                  </p>
                   {contact.url && (
-                    <div className="flex items-center text-sm text-neutral-400 group-hover:text-neutral-200 transition-colors duration-300">
+                    <div className="flex items-center justify-center text-sm font-semibold uppercase tracking-widest text-foreground group-hover:opacity-70 transition-opacity">
                       <span className="mr-2">Connect</span>
                       <FaExternalLinkAlt className="text-xs" />
                     </div>
                   )}
                 </div>
-              </a>
-            ))}
-            <div
-              className={`group bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 from-indigo-400 to-indigo-600 hover:border-transparent transition-all duration-300 transform hover:scale-105`}
-            >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div
-                  className={`p-4 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 group-hover:shadow-lg transition-shadow duration-300`}
-                >
-                  <FaDiscord className="text-2xl text-white" />
-                </div>
+              );
 
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors duration-300">
-                    Discord
-                  </h3>
-                  <p className="text-neutral-300 group-hover:text-neutral-100 transition-colors duration-300 break-all">
-                    @nonlooped
-                  </p>
+              return contact.url ? (
+                <a
+                  key={index}
+                  href={contact.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full md:w-[30%] min-w-[280px]"
+                >
+                  {Content}
+                </a>
+              ) : (
+                <div
+                  key={index}
+                  className="block w-full md:w-[30%] min-w-[280px] cursor-default"
+                >
+                  {Content}
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
-          {/* Additional CTA section */}
-          <div className="mt-16 text-center">
-            <div className="bg-neutral-900 p-8 rounded-lg shadow-lg border border-neutral-700 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">
+          {/* Additional CTA section strictly centered */}
+          <div className="mt-20 md:mt-32 w-full flex justify-center">
+            <div className="bg-card-bg/50 backdrop-blur-sm border border-card-border p-10 md:p-16 rounded-[3rem] shadow-sm flex flex-col items-center text-center max-w-3xl w-full relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-6 tracking-tight relative z-10">
                 Let&apos;s Build Something{" "}
-                <span className="bg-gradient-to-r from-yellow-500 to-transparent px-2 rounded">
-                  Extraordinary
+                <span className="italic font-serif font-light text-muted-foreground block mt-2">
+                  Extraordinary.
                 </span>
               </h3>
-              <p className="text-neutral-300 mb-6">
+              <p className="text-lg text-muted-foreground mb-10 max-w-xl relative z-10">
                 Whether you have a project in mind or just want to chat about
                 tech, I&apos;m always excited to connect with fellow creators
                 and innovators.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a
-                  href="https://twitter.com/nonlooped"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-md transition duration-200 ease-in-out"
-                >
-                  Follow on Twitter
-                </a>
+              <div className="flex flex-wrap justify-center gap-4 relative z-10">
                 <a
                   href="mailto:cored.developments@gmail.com"
-                  className="border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-neutral-900 font-semibold py-2 px-6 rounded-md transition duration-200 ease-in-out"
+                  className="bg-foreground text-background hover:bg-foreground/80 uppercase tracking-widest font-semibold py-4 px-10 rounded-full transition-all duration-300 hover:scale-105"
                 >
-                  Send Email
+                  Start a Project
                 </a>
               </div>
             </div>
