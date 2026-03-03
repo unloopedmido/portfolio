@@ -64,7 +64,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <a
-          href="#"
+          href="#home"
           className="group flex items-center gap-2"
           onClick={() => setActiveSection("home")}
         >
